@@ -7,7 +7,7 @@
     }">
         <h2>{{ blog.title }}</h2>
         <p>{{ blog.author }}</p>
-        <p>{{ blog.content| slice:0:100 }}{{ blog.content.length > 50 ? '...'  : '' }} &nbsp;<a>continue reading</a></p>
+        <p>{{ blog.content| slice:0:100 }}{{ blog.content.length > 50 ? '...'  : '' }} &nbsp;<a [routerLink]="['/blogs-details', blog.id]">continue reading</a></p>
       </div>
    </ng-container>
  

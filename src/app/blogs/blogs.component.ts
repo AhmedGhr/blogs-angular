@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BlogsService } from './blogs.service';
 export interface Blog{
   id:number  
@@ -16,7 +17,12 @@ export interface Blog{
 export class BlogsComponent implements OnInit  {
   blogs : Blog[] 
 
-  constructor(private blogsService : BlogsService){}
+  constructor(private blogsService : BlogsService, private router : Router){}
+
+
+goToDetails(){
+  this.router.navigate(['/blogs-details'])
+}
 
   ngOnInit(): void {
     this.blogs = this.blogsService.getBlogs();
