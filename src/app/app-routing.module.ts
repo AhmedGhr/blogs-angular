@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BlogsComponent } from './blogs/blogs.component';
+import { FormBlogComponent } from './form-blog/form-blog.component';
 
-const routes: Routes = [];
+const routes: Routes = [{path:'form-blog',component:FormBlogComponent},
+{path:'',component:BlogsComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,18 @@
+<form  [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+    <label>Title:</label>
+    <input formControlName="title" type="text" />
+  
+    <label>Author:</label>
+    <input formControlName="author" type="text" />
+  
+    <label>Content:</label>
+    <textarea formControlName="content"></textarea>
+  
+    <label>Upvotes:</label>
+    <input formControlName="upvotes" type="number" />
+
+    <label>Downvotes:</label>
+    <input formControlName="downvotes" type="number" />
+  
+    <button type="submit">Add Blog</button>
+  </form>

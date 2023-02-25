@@ -1,0 +1,13 @@
+<ng-container *ngFor="let blog of blogs">
+    <div class="blog" [ngStyle]="{
+      'margin': '10px',
+      'border-style': 'solid',
+      'border-color': blog.upvotes > blog.downvotes ? 'green' : 'red',
+      'border-width': '3px'
+    }">
+        <h2>{{ blog.title }}</h2>
+        <p>{{ blog.author }}</p>
+        <p>{{ blog.content| slice:0:100 }}{{ blog.content.length > 50 ? '...'  : '' }} &nbsp;<a>continue reading</a></p>
+      </div>
+   </ng-container>
+ 
