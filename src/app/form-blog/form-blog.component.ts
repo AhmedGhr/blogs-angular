@@ -32,7 +32,8 @@ export class FormBlogComponent {
   onSubmit() {
     // add the form values to the blogs array
     this.blogs.push(this.blogForm.value);
-    this.blogsService.addBlog(this.blogForm.value)
+    //this.blogsService.addBlog(this.blogForm.value)
+    this.blogsService.addBlogFastAPI(this.blogForm.value)
     // reset the form
     this.blogForm.reset();
 

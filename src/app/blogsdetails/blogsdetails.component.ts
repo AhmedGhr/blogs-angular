@@ -14,8 +14,18 @@ export class BlogsdetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = parseInt(params['id']);
-      
-   this.blog= this.blogsService.getBlogById(id);
+     this.blogsService.getBlogByIdAPI(id).subscribe({next:(data)=>{
+      const foundBlog : Blog= {
+        id: data["id"],
+        title: data["title"],
+        author: data["author"],
+        content: data["content"],
+        upvotes: data["upvotes"],
+        downvotes: data["downvotes"]
+      }
+      this.blog= foundBlog;
+     }}) 
+   
     });
   }
 }

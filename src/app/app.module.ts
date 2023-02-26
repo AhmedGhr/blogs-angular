@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormBlogComponent } from './form-blog/form-blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogsdetailsComponent } from './blogsdetails/blogsdetails.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { BlogsdetailsComponent } from './blogsdetails/blogsdetails.component';
     BlogsdetailsComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule

@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 export interface Blog{
   id:number  
   title : string
@@ -12,8 +13,8 @@ export interface Blog{
   providedIn: 'root'
 })
 export class BlogsService {
-
-  constructor() { }
+  private apiBaseUrl = 'http://127.0.0.1:8000';
+  constructor(private http: HttpClient) { }
   
   private blogs : Blog[] = [
     {id:1,title:"Title 1",author:"Ahmed",content:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",downvotes:0,upvotes:5},
@@ -22,6 +23,34 @@ export class BlogsService {
     {id:4,title:"Title 4",author:"Ahmed",content:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",downvotes:0,upvotes:5},
 
 ]
+
+
+  addBlogFastAPI(blog:Blog){
+    const url = `${this.apiBaseUrl}/blog`;
+
+    // Define the request body
+    const body = {
+      "id":blog.id,
+      "author":blog.author,
+      "title": blog.title,
+      "content": blog.content,
+      "upvotes":blog.upvotes,
+      "downvotes":blog.downvotes,
+    };
+    console.log(this.http.post(url, body).subscribe((response)=>{
+      response
+    }))
+    // Send the POST request to the API endpoint
+    return this.http.post(url, body);
+  }
+  
+
+  getBlogsApi(){
+     const url = `${this.apiBaseUrl}/blogs`;
+
+     return this.http.get<any[]>(url);
+  }
+
 
   getBlogs() {
     return this.blogs;
@@ -35,6 +64,11 @@ export class BlogsService {
 
       return this.blogs.find(blog => blog.id === id)
       
+  }
+
+  getBlogByIdAPI(id:number){
+    const url = `${this.apiBaseUrl}/blogs/${id}`;
+    return this.http.get<any[]>(url);
   }
 }
 

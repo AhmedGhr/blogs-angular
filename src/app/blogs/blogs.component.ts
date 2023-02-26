@@ -15,17 +15,40 @@ export interface Blog{
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit  {
-  blogs : Blog[] 
-
-  constructor(private blogsService : BlogsService, private router : Router){}
+  blogs : Blog[] ;
+  blogsTest : any[];
+  constructor(private blogsService : BlogsService, private router : Router){
+   
+  }
 
 
 goToDetails(){
   this.router.navigate(['/blogs-details'])
 }
 
-  ngOnInit(): void {
-    this.blogs = this.blogsService.getBlogs();
-    console.log(this.blogs);
+  ngOnInit(){
+
+
+    
+    this.blogsService.getBlogsApi().subscribe({
+      next: (data) => {
+        this.blogs = data["items"].map(blog => {
+          const newBlog: Blog = {
+            id: blog.id,
+            title: blog.title,
+            author: blog.author,
+            content: blog.content,
+            upvotes: blog.upvotes,
+            downvotes: blog.downvotes
+          };
+          return newBlog;
+        });
+      }
+    }
+    )
+    //console.log(dataObbservable.subscribe((data)=>data['items']))
+
+    //this.blogs = this.blogsService.getBlogs();
+    
   }
 }
