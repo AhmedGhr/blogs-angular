@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogsService } from './blogs.service';
 export interface Blog{
@@ -17,38 +17,85 @@ export interface Blog{
 export class BlogsComponent implements OnInit  {
   blogs : Blog[] ;
   blogsTest : any[];
+  searchTerm: string = '';
+  searchResults: Blog[] = [];
   constructor(private blogsService : BlogsService, private router : Router){
    
   }
+
+  search() {
+     this.searchResults = this.searchResults.filter((blog) => {
+      const searchValue = this.searchTerm.toLowerCase();
+      const title = blog.title.toLowerCase();
+     const author = blog.author.toLowerCase();
+    const content = blog.content.toLowerCase();
+    return title.includes(searchValue) || author.includes(searchValue) || content.includes(searchValue);
+   });
+  }
+
 
 
 goToDetails(){
   this.router.navigate(['/blogs-details'])
 }
 
-  ngOnInit(){
+
+onSearchTermChanged(event: Event) {
+  this.searchTerm = (event.target as HTMLInputElement).value;
+  this.getBlogs(this.searchTerm);
+  
+}
 
 
+getBlogs(searchTerm? : string){
+  this.blogsService.getBlogsApi().subscribe({
+    next: (data) => {
+      
+      this.blogs = data["items"].map(blog => {
+        const newBlog: Blog = {
+          id: blog.id,
+          title: blog.title,
+          author: blog.author,
+          content: blog.content,
+          upvotes: blog.upvotes,
+          downvotes: blog.downvotes
+        };
+        
+        return newBlog;
+        
+      });
     
-    this.blogsService.getBlogsApi().subscribe({
-      next: (data) => {
-        this.blogs = data["items"].map(blog => {
-          const newBlog: Blog = {
-            id: blog.id,
-            title: blog.title,
-            author: blog.author,
-            content: blog.content,
-            upvotes: blog.upvotes,
-            downvotes: blog.downvotes
-          };
-          return newBlog;
-        });
-      }
+      this.blogs = this.blogs.filter((blog) => {
+        if (!searchTerm) {
+          // If no search term is provided, return all blogs
+          return true;
+        }
+        // Otherwise, search by title, author, or content
+        const title = blog.title.toLowerCase()
+        const author = blog.author.toLowerCase()
+        const content = blog.content.toLowerCase()
+        return (
+          title.includes(searchTerm) ||
+          author.includes(searchTerm) ||
+          content.includes(searchTerm)
+        );
+      });
+    
     }
-    )
+    
+  }
+  
+  )
+}
+
+  ngOnInit(){
+    
+    this.getBlogs()
+    
     //console.log(dataObbservable.subscribe((data)=>data['items']))
 
     //this.blogs = this.blogsService.getBlogs();
     
   }
+  
 }

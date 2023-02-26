@@ -1,3 +1,4 @@
+<input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="onSearchTermChanged($event)">
 <ng-container *ngFor="let blog of blogs">
     <div class="blog" [ngStyle]="{
       'margin': '10px',
