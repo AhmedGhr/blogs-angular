@@ -31,7 +31,9 @@ export class FormBlogComponent {
 
   onSubmit() {
     // add the form values to the blogs array
-    this.blogs.push(this.blogForm.value);
+    if (this.blogForm.valid) {
+      // Submit form data
+      this.blogs.push(this.blogForm.value);
     //this.blogsService.addBlog(this.blogForm.value)
     this.blogsService.addBlogFastAPI(this.blogForm.value)
     // reset the form
@@ -39,6 +41,9 @@ export class FormBlogComponent {
 
     //redirect to blogs list page
     this.router.navigate(['/'])
+    }
+    
+    
 
 
   }

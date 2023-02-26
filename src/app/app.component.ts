@@ -32,7 +32,7 @@ gotoHome(){
 }
 
   ngOnInit(): void{
-    this.blogs = this.blogService.getBlogs();
+     this.blogService.getBlogsApi().subscribe((data)=>this.blogs = data["items"]);
     
   }
 }

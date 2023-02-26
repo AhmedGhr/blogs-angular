@@ -70,5 +70,10 @@ export class BlogsService {
     const url = `${this.apiBaseUrl}/blogs/${id}`;
     return this.http.get<any[]>(url);
   }
+
+  deleteblogAPI(id:number){
+    const url = `${this.apiBaseUrl}/blogs/${id}`;
+    return this.http.delete(url);
+  }
 }
 

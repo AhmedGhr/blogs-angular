@@ -64,7 +64,7 @@ getBlogs(searchTerm? : string){
         return newBlog;
         
       });
-    
+    if(this.blogs.length>0){
       this.blogs = this.blogs.filter((blog) => {
         if (!searchTerm) {
           // If no search term is provided, return all blogs
@@ -80,6 +80,8 @@ getBlogs(searchTerm? : string){
           content.includes(searchTerm)
         );
       });
+    }
+      
     
     }
     
@@ -87,6 +89,28 @@ getBlogs(searchTerm? : string){
   
   )
 }
+
+deleteBlogAPI(id:number){
+  alert(`do you really want to delete the post?`)
+  
+}
+
+
+showAlert(id: number) {
+  // Display an alert dialog box with a message and OK/Cancel buttons
+  var result = confirm("Are you sure you want to delete the blog?");
+
+  // Check the result of the alert dialog box
+  if (result == true) {
+    // If OK button is clicked, perform an action
+    this.blogsService.deleteblogAPI(id).subscribe((result)=>console.log(result));
+    this.getBlogs()
+  } else {
+    // If Cancel button is clicked, do nothing
+    this.getBlogs()
+  }
+}
+
 
   ngOnInit(){
     

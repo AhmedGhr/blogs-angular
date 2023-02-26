@@ -1,16 +1,38 @@
-<input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="onSearchTermChanged($event)">
-<ng-container *ngFor="let blog of blogs">
-    <mat-card>
+<mat-form-field appearance="fill">
+    <mat-label>Search....</mat-label>
+    <input matInput type="text" [(ngModel)]="searchTerm" (input)="onSearchTermChanged($event)">
+
+  </mat-form-field>
+
+
+<p *ngIf="blogs?.length==0">
+    There are no posts to show , add some!
+   </p>
+<ng-container class="blog-list" *ngFor="let blog of blogs">
+    
     <div class="blog" [ngStyle]="{
       'margin': '10px',
       'border-style': 'solid',
       'border-color': blog.upvotes > blog.downvotes ? 'green' : 'red',
       'border-width': '3px'
     }">
-        <h2>{{ blog.title }}</h2>
-        <p>{{ blog.author }}</p>
+        <h2>Title : {{ blog.title }}</h2>
+        <p> By : {{ blog.author }}</p>
         <p>{{ blog.content| slice:0:100 }}{{ blog.content.length > 50 ? '...'  : '' }} &nbsp;<a [routerLink]="['/blogs-details', blog.id]">continue reading</a></p>
-      </div>
-    </mat-card>
+        <div [ngStyle]="{
+            'display':'flex'
+        }">
+            Upvotes : &nbsp; <div [ngStyle]="{
+                
+                'font-weight':'bold'
+            }"> {{blog.upvotes}} </div>&nbsp; |  Downvotes : &nbsp; <div [ngStyle]="{
+                
+                'font-weight':'bold'
+            }">{{blog.downvotes}}</div> 
+         </div> 
+
+        <button class="mat-button" mat-raised-button color="warn" (click)="showAlert(blog.id)">delete</button>
+    </div>
+    
    </ng-container>
  

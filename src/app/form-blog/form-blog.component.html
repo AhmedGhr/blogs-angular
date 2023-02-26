@@ -1,23 +1,35 @@
 <form  [formGroup]="blogForm" (ngSubmit)="onSubmit()">
-    <label>Title:</label>
     <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
         <input matInput formControlName="title">
       </mat-form-field>
   
 
-    <label>Author:</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Author</mat-label>
+        <input matInput formControlName="author">
+      </mat-form-field>
     
-    <input formControlName="author" type="text" />
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Content</mat-label>
+        
+        <textarea matInput formControlName="content"></textarea>
+      </mat-form-field>
   
-    <label>Content:</label>
-    <textarea formControlName="content"></textarea>
-  
-    <label>Upvotes:</label>
-    <input formControlName="upvotes" type="number" />
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Upvotes</mat-label>
+        
+        <input matInput formControlName="upvotes" type="number" />
+      </mat-form-field>
 
-    <label>Downvotes:</label>
-    <input formControlName="downvotes" type="number" />
+      <mat-form-field>
+        <mat-label>Downvotes</mat-label>
+        
+        <input matInput formControlName="downvotes" type="number" />
+      </mat-form-field>
   
-    <button type="submit">Add Blog</button>
+  
+    <button mat-button type="submit">Add Blog</button>
   </form>
