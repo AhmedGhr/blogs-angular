@@ -1,8 +1,13 @@
 <form  [formGroup]="blogForm" (ngSubmit)="onSubmit()">
     <label>Title:</label>
-    <input formControlName="title" type="text" />
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
   
+
     <label>Author:</label>
+    
     <input formControlName="author" type="text" />
   
     <label>Content:</label>

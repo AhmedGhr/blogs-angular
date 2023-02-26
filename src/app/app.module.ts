@@ -7,6 +7,10 @@ import { FormBlogComponent } from './form-blog/form-blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogsdetailsComponent } from './blogsdetails/blogsdetails.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -21,7 +25,12 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

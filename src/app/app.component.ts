@@ -26,6 +26,11 @@ gotoForm(){
   this.router.navigate(['/form-blog'])
 }
 
+gotoHome(){
+  console.log("clicked")
+  this.router.navigate(['/'])
+}
+
   ngOnInit(): void{
     this.blogs = this.blogService.getBlogs();
     

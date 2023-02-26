@@ -1,5 +1,6 @@
 <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="onSearchTermChanged($event)">
 <ng-container *ngFor="let blog of blogs">
+    <mat-card>
     <div class="blog" [ngStyle]="{
       'margin': '10px',
       'border-style': 'solid',
@@ -10,5 +11,6 @@
         <p>{{ blog.author }}</p>
         <p>{{ blog.content| slice:0:100 }}{{ blog.content.length > 50 ? '...'  : '' }} &nbsp;<a [routerLink]="['/blogs-details', blog.id]">continue reading</a></p>
       </div>
+    </mat-card>
    </ng-container>
  

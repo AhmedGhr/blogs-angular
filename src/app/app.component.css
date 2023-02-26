@@ -32,7 +32,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
+    background-color: #324296;
     color: white;
     font-weight: 600;
   }
@@ -57,17 +57,23 @@
   }
 
   .content {
-    display: flex;
-    margin: 82px auto 32px;
+    display: flexb;
+    margin: 82px;
     margin-right: 20px;
     padding: 0 16px;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
   }
-  .content > * {
-    flex-basis: calc(33.33% - 10px);
-    margin-bottom: 20px;
+ 
+  .add-blog{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+  }
+
+  .add-blog:hover{
+cursor: pointer;
+color: rgb(199, 196, 196);
   }
 
   
