@@ -23,6 +23,9 @@ export class BlogsComponent implements OnInit  {
    
   }
 
+
+
+  
   search() {
      this.searchResults = this.searchResults.filter((blog) => {
       const searchValue = this.searchTerm.toLowerCase();
@@ -88,11 +91,17 @@ getBlogs(searchTerm? : string){
   }
   
   )
+
+  
 }
 
 deleteBlogAPI(id:number){
   alert(`do you really want to delete the post?`)
   
+}
+
+getBorderColor(upvotes: number, downvotes: number) {
+  return (upvotes > downvotes) ? "green" : (upvotes < downvotes) ? "red" : "grey";
 }
 
 
@@ -119,6 +128,8 @@ showAlert(id: number) {
     //console.log(dataObbservable.subscribe((data)=>data['items']))
 
     //this.blogs = this.blogsService.getBlogs();
+
+   
     
   }
   

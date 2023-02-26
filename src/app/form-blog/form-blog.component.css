@@ -16,3 +16,8 @@ form {
     font-size: 16px;
     line-height: 1.5;
   }
+
+  .button-mat {
+    background-color: #95979d;
+    color: #fff;
+}

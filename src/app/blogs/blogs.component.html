@@ -10,10 +10,10 @@
    </p>
 <ng-container class="blog-list" *ngFor="let blog of blogs">
     
-    <div class="blog" [ngStyle]="{
+    <div  class="blog" [ngStyle]="{
       'margin': '10px',
+      'border-color': getBorderColor(blog.upvotes,blog.downvotes),
       'border-style': 'solid',
-      'border-color': blog.upvotes > blog.downvotes ? 'green' : 'red',
       'border-width': '3px'
     }">
         <h2>Title : {{ blog.title }}</h2>
@@ -22,10 +22,10 @@
         <div [ngStyle]="{
             'display':'flex'
         }">
-            Upvotes : &nbsp; <div [ngStyle]="{
+            Upvotes : &nbsp; <div class="upvotes" [ngStyle]="{
                 
                 'font-weight':'bold'
-            }"> {{blog.upvotes}} </div>&nbsp; |  Downvotes : &nbsp; <div [ngStyle]="{
+            }"> {{blog.upvotes}} </div>&nbsp; |  Downvotes : &nbsp; <div class="downvotes" [ngStyle]="{
                 
                 'font-weight':'bold'
             }">{{blog.downvotes}}</div> 
